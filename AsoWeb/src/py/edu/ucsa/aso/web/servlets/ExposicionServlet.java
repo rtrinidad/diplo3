@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import py.edu.ucsa.aso.ejb.ExposicionEJB;
 import py.edu.ucsa.aso.ejb.entities.Exposicion;
@@ -46,11 +47,16 @@ public class ExposicionServlet extends HttpServlet {
 		
 		List<Exposicion> expos = expoEJB.listarExposiciones();
 		
+		HttpSession session = request.getSession(true);//CREAMOS UNA SESSION
+		session.setAttribute("exposicion", expos); //SETEAMOS AL USUARIO EN LA SESSION, COMO ATRIBUTO
+		request.getRequestDispatcher("listarExposicion.jsp").forward(request, response);//PASAMOS EL CONTROL DE LA PETICION AL RECURSO listarExposicion.jsp
+	
+/*		
 		//IMPRIMIR EN CONSOLA
-	/*	for (Exposicion exposicion : expos) {
+		for (Exposicion exposicion : expos) {
 			
 			System.out.println(exposicion.getDescripcion());
-		} */
+		} 
 		
 		//IMPRIMIR EN HTML
 		PrintWriter out;
@@ -68,7 +74,7 @@ public class ExposicionServlet extends HttpServlet {
 			
 		}
 		out.println("</body></html>");
-		
+*/		
 	}
 
 	/**

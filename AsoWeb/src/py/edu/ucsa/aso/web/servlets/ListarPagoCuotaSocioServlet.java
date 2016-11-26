@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import py.edu.ucsa.aso.ejb.PagoCuotaSocioEJB;
 import py.edu.ucsa.aso.ejb.entities.PagoCuotaSocio;
@@ -39,6 +40,12 @@ public class ListarPagoCuotaSocioServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		List<PagoCuotaSocio> pagos = pagoCuotaEJB.listarCuotasPagadasPorSocio(1);
+		//HttpSession session = request.getSession(true);//CREAMOS UNA SESSION
+		//session.setAttribute("pagoCuota", pagos);
+		//request.getSession().setAttribute("pagoCuota", pagos);
+		//request.getRequestDispatcher(".jsp").forward(request, response); //PASAMOS EL CONTROL DE LA PETICION AL RECURSO MostrarCarrito.jsp
+		
+		
 		//IMPRIMIR EN LA CONSOLA
 		for (PagoCuotaSocio pcs : pagos) {
 			System.out.println(pcs.getEstado().getDescripcion());			
@@ -88,7 +95,9 @@ public class ListarPagoCuotaSocioServlet extends HttpServlet {
 					
 				}
 				out.println("</body></html>");
-		
+	
+				
+				
 	}
 
 	/**
