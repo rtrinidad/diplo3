@@ -17,6 +17,7 @@
 	<div class="row col-md-9 col-md-offset-2 custyle">
 	<table class="table table-striped custab">
 	<thead>
+	<a href="#" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-plus-sign"></span> Agregar Exposicion</a>
 	<tr>
 		<th>Nombre</th>
 		<th>Descripcion</th>
