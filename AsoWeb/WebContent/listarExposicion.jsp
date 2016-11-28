@@ -9,13 +9,14 @@
 <link rel="stylesheet" href="css/table.css" />
 </head>
 <body>
+  <div class="container">
+	<div class="page-header">
 	<h1 class="text-center">Lista de Exposiciones</h1>
+	</div>
 	<br>
-	<div class="container">
-	<div class="row col-md-6 col-md-offset-2 custyle">
+	<div class="row col-md-9 col-md-offset-2 custyle">
 	<table class="table table-striped custab">
 	<thead>
-	<a href="#" class="btn btn-primary btn-xs pull-right"><b>+</b> Agregar Exposicion</a>
 	<tr>
 		<th>Nombre</th>
 		<th>Descripcion</th>
@@ -35,7 +36,7 @@
         <td>${x.ubicacion}</td>
         <td>${x.fechaExpo}</td>
         <td>${x.contacto}</td>
-        <td class="text-center">
+        <td class="text-center" colspan="2">
         	<a class='btn btn-info btn-xs' href="#">
         		<span class="glyphicon glyphicon-edit">
         		</span>Editar</a> <a href="#" class="btn btn-danger btn-xs">

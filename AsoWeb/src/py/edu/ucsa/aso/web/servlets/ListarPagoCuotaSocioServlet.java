@@ -47,9 +47,9 @@ public class ListarPagoCuotaSocioServlet extends HttpServlet {
 		
 		
 		//IMPRIMIR EN LA CONSOLA
-		for (PagoCuotaSocio pcs : pagos) {
-			System.out.println(pcs.getEstado().getDescripcion());			
-		}
+//		for (PagoCuotaSocio pcs : pagos) {
+//			System.out.println(pcs.getEstado().getDescripcion());			
+//		}
 		
 		
 		//IMPRIMIR EN HTML
@@ -81,22 +81,17 @@ public class ListarPagoCuotaSocioServlet extends HttpServlet {
 					out.println("<td>" + pagoCuotasSocio.getEstado().getDescripcion() + "</td>");
 					out.println("</tr>");
 					
-				}
-				
+				}				
 				out.println("</table>");
-				
-				
 				out.println("<br>");
-				out.println("<br>");
-				for (PagoCuotaSocio pcs : pagos) {
-					out.println("<h4>Socio: " + pcs.getSocio().getNombres() + " " + pcs.getSocio().getApellidos() + 
-				" Mes/Año: " + pcs.getMesCuota() + "/" + pcs.getAnhoCuota()  + " Monto: " + pcs.getMontoCuota() + 
-				" Estado: " + pcs.getEstado().getDescripcion() + "</h4>");
-					
-				}
+//				out.println("<br>");
+//				for (PagoCuotaSocio pcs : pagos) {
+//					out.println("<h4>Socio: " + pcs.getSocio().getNombres() + " " + pcs.getSocio().getApellidos() + 
+//				" Mes/Año: " + pcs.getMesCuota() + "/" + pcs.getAnhoCuota()  + " Monto: " + pcs.getMontoCuota() + 
+//				" Estado: " + pcs.getEstado().getDescripcion() + "</h4>");
+//					
+//				}
 				out.println("</body></html>");
-	
-				
 				
 	}
 
