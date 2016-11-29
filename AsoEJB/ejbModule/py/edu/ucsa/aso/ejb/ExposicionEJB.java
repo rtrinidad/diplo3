@@ -9,7 +9,7 @@ import py.edu.ucsa.aso.ejb.entities.Exposicion;
 
 
 @Remote
-public interface ExposicionEJB {
+public interface ExposicionEJB extends CrudEJB<Exposicion> {
 	
 	
 public List<Exposicion> listarExposiciones();

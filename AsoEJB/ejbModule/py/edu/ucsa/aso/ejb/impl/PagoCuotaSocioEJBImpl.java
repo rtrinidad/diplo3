@@ -26,4 +26,39 @@ public class PagoCuotaSocioEJBImpl implements PagoCuotaSocioEJB {
 			return q.getResultList();
 	}
 
+
+	@Override
+	public List<PagoCuotaSocio> listar() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public PagoCuotaSocio getById(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public void insertar(PagoCuotaSocio objeto) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void actualizar(PagoCuotaSocio objeto) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void eliminar(Long id) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

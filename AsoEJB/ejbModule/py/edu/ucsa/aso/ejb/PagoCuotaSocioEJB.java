@@ -10,7 +10,7 @@ import py.edu.ucsa.aso.ejb.entities.PagoCuotaSocio;
 
 
 @Remote
-public interface PagoCuotaSocioEJB {
+public interface PagoCuotaSocioEJB extends CrudEJB<PagoCuotaSocio> {
 
 	public List<PagoCuotaSocio> listarCuotasPagadasPorSocio(int idSocio);
 	
