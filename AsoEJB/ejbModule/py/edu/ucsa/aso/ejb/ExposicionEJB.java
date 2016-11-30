@@ -13,6 +13,7 @@ public interface ExposicionEJB extends CrudEJB<Exposicion> {
 	
 	
 public List<Exposicion> listarExposiciones();
-		
+
+	
 
 }
