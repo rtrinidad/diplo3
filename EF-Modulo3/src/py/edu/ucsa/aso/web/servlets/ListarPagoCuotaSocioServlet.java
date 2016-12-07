@@ -46,9 +46,9 @@ public class ListarPagoCuotaSocioServlet extends HttpServlet {
 		
 		
 		//IMPRIMIR EN LA CONSOLA
-//		for (PagoCuotaSocio pcs : pagos) {
-//			System.out.println(pcs.getEstado().getDescripcion());			
-//		}
+	//	for (PagoCuotaSocio pcs : pagos) {
+		//	System.out.println(pcs.getEstado().getDescripcion());			
+	//	}
 		
 		
 		//IMPRIMIR EN HTML

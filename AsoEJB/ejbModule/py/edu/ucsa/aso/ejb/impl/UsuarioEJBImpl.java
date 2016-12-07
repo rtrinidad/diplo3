@@ -2,8 +2,7 @@ package py.edu.ucsa.aso.ejb.impl;
 
 import java.util.List;
 
-import javax.ejb.Local;
-import javax.ejb.LocalBean;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -33,32 +32,25 @@ public class UsuarioEJBImpl implements UsuarioEJB {
 	@Override
 	public Usuario autenticar(String usuario, String clave) {
 		
-		Usuario usu = null;
-				
-	
 		
-			if (usu != null){
-				Query q = em.createNamedQuery("Usuario.findByUsuario");
-				q.setParameter("usuario", usuario);
-				q.setParameter("clave", clave);
-				usu = (Usuario) q.getSingleResult();
 				
-			}
-			
-			
-			 em.createQuery("SELECT u FROM Usuario u WHERE u.usuario like :usuario and u.clave = ;clave");
-			 em.setParameter("usuario", usuario);
-			 em.setParameter("clave", clave);
-			 .getResulList()
 		
-		return usu;
+			
+				Query query = em.createQuery("SELECT u FROM Usuario u WHERE u.usuario like :usuario and u.clave = :clave");
+					  query.setParameter("usuario", usuario);
+					  query.setParameter("clave", clave);
+				      query.getSingleResult();
+				 
+				 return	(Usuario) query;
 
 	}
 
 	@Override
 	public List<Usuario> listar() {
 		
+		
 		//return em.createQuery("From Usuario").getResultList();
+		return null;
 	}
 
 	@Override

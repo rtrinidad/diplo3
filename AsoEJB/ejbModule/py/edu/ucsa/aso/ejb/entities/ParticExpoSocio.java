@@ -11,7 +11,11 @@ import java.sql.Timestamp;
  */
 @Entity
 @Table(name="partic_expo_socios")
-@NamedQuery(name="ParticExpoSocio.findAll", query="SELECT p FROM ParticExpoSocio p")
+@NamedQueries({
+	@NamedQuery(name="ParticExpoSocio.findAll", query="SELECT p FROM ParticExpoSocio p"),
+    @NamedQuery(name="ParticExpoSocio.findBySocio",
+                query="SELECT p FROM ParticExpoSocio p WHERE p.socio = :idSocio")
+})
 public class ParticExpoSocio implements Serializable {
 	private static final long serialVersionUID = 1L;
 
