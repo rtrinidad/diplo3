@@ -16,8 +16,8 @@ import java.util.List;
 @NamedQueries({
 	@NamedQuery(name="Usuario.findAll", query="SELECT u FROM Usuario u"),
     @NamedQuery(name="Usuario.findByUsuario",
-                query="SELECT u FROM Usuario u WHERE u.usuario = :usuario and "
-                		+ "u.clave = :clave")
+                query="SELECT u FROM Usuario u WHERE u.usuario like :usuario and "
+                		+ "u.clave like :clave")
 }) 
 public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -43,8 +43,9 @@ public class Usuario implements Serializable {
 	private String usuario;
 
 	//bi-directional many-to-many association to Rol
-	@ManyToMany(mappedBy="usuario")
-	private List<Rol> rol;
+	//@ManyToMany(mappedBy="usuario")  
+	
+	//private List<Rol> rol;
 
 	//uni-directional many-to-one association to Socio
 	@ManyToOne
@@ -118,13 +119,13 @@ public class Usuario implements Serializable {
 		this.usuario = usuario;
 	}
 
-	public List<Rol> getRol() {
-		return this.rol;
-	}
-
-	public void setRol(List<Rol> rol) {
-		this.rol = rol;
-	}
+//	public List<Rol> getRol() {
+//		return this.rol;
+//	}
+//
+//	public void setRol(List<Rol> rol) {
+//		this.rol = rol;
+//	}
 
 	public Socio getSocio() {
 		return this.socio;

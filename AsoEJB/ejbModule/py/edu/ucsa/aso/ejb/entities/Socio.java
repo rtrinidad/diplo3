@@ -44,8 +44,8 @@ public class Socio implements Serializable {
 	private BigDecimal nroSocio;
 
 	//bi-directional many-to-one association to ParticExpoSocio
-	@OneToMany(mappedBy="socio")
-	private List<ParticExpoSocio> particExpoSocios;
+	//@OneToMany(mappedBy="socio")
+	//private List<ParticExpoSocio> particExpoSocios;
 
 	//uni-directional many-to-one association to Opcion
 	@ManyToOne
@@ -145,27 +145,27 @@ public class Socio implements Serializable {
 		this.nroSocio = nroSocio;
 	}
 
-	public List<ParticExpoSocio> getParticExpoSocios() {
-		return this.particExpoSocios;
-	}
+//	public List<ParticExpoSocio> getParticExpoSocios() {
+//		return this.particExpoSocios;
+//	}
+//
+//	public void setParticExpoSocios(List<ParticExpoSocio> particExpoSocios) {
+//		this.particExpoSocios = particExpoSocios;
+//	}
 
-	public void setParticExpoSocios(List<ParticExpoSocio> particExpoSocios) {
-		this.particExpoSocios = particExpoSocios;
-	}
-
-	public ParticExpoSocio addParticExpoSocio(ParticExpoSocio particExpoSocio) {
-		getParticExpoSocios().add(particExpoSocio);
-		particExpoSocio.setSocio(this);
-
-		return particExpoSocio;
-	}
-
-	public ParticExpoSocio removeParticExpoSocio(ParticExpoSocio particExpoSocio) {
-		getParticExpoSocios().remove(particExpoSocio);
-		particExpoSocio.setSocio(null);
-
-		return particExpoSocio;
-	}
+//	public ParticExpoSocio addParticExpoSocio(ParticExpoSocio particExpoSocio) {
+//		getParticExpoSocios().add(particExpoSocio);
+//		particExpoSocio.setSocio(this);
+//
+//		return particExpoSocio;
+//	}
+//
+//	public ParticExpoSocio removeParticExpoSocio(ParticExpoSocio particExpoSocio) {
+//		getParticExpoSocios().remove(particExpoSocio);
+//		particExpoSocio.setSocio(null);
+//
+//		return particExpoSocio;
+//	}
 
 	public Opcion getEstadoActual() {
 		return this.estadoActual;

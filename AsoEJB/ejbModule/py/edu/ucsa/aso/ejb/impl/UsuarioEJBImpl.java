@@ -32,16 +32,15 @@ public class UsuarioEJBImpl implements UsuarioEJB {
 	@Override
 	public Usuario autenticar(String usuario, String clave) {
 		
-		
-				
-		
-			
-				Query query = em.createQuery("SELECT u FROM Usuario u WHERE u.usuario like :usuario and u.clave = :clave");
-					  query.setParameter("usuario", usuario);
-					  query.setParameter("clave", clave);
-				      query.getSingleResult();
-				 
-				 return	(Usuario) query;
+	//Usuario	usu = null;	
+	Usuario usu= (Usuario) em.createQuery("SELECT u FROM Usuario u WHERE u.usuario like :usuario and u.clave like :clave")
+				.setParameter("usuario", usuario)
+				.setParameter("clave", clave)
+				.getSingleResult();
+
+	
+	
+	 return	usu;
 
 	}
 
@@ -49,8 +48,8 @@ public class UsuarioEJBImpl implements UsuarioEJB {
 	public List<Usuario> listar() {
 		
 		
-		//return em.createQuery("From Usuario").getResultList();
-		return null;
+		return em.createNamedQuery("Usuario.findAll").getResultList();
+		//return null;
 	}
 
 	@Override

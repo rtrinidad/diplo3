@@ -5,7 +5,7 @@ import java.util.List;
 import javax.ejb.Remote;
 
 
-import py.edu.ucsa.aso.ejb.entities.Socio;
+//import py.edu.ucsa.aso.ejb.entities.Socio;
 import py.edu.ucsa.aso.ejb.entities.TematicaParticExpoSocio;
 
 

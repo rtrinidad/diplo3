@@ -8,7 +8,6 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import py.edu.ucsa.aso.ejb.TematicaParticExpoSocioEJB;
-import py.edu.ucsa.aso.ejb.entities.Socio;
 import py.edu.ucsa.aso.ejb.entities.TematicaParticExpoSocio;
 
 
@@ -51,9 +50,11 @@ public class TematicaParticExpoSocioEJBImpl implements TematicaParticExpoSocioEJ
 	@Override
 	public List<TematicaParticExpoSocio> listarTematicaParticExpoSocioByParticExpoSocio(int idParticExpoSocio) {
 		
-		Query query = em.createQuery("SELECT t FROM TematicaParticExpoSocio t WHERE t.particExpoSocio = :idParticExpoSocio");
-		  query.setParameter("idParticExpoSocio", idParticExpoSocio);
-	   return   query.getResultList();
+		//List<TematicaParticExpoSocio> tematicas= em.createQuery("SELECT t.id,t.canceloParticTematica,t.fechaCancelacion,t.fechaCreacion,t.tematicaEspecifica,t.tematicaGeneral,t.particExpoSocio FROM TematicaParticExpoSocio t WHERE t.particExpoSocio.id = :idParticExpoSocio")
+		List<TematicaParticExpoSocio> tematicas= em.createQuery("SELECT t FROM TematicaParticExpoSocio t WHERE t.particExpoSocio.id = :idParticExpoSocio")
+		.setParameter("idParticExpoSocio", idParticExpoSocio)
+		   .getResultList();
+		return tematicas;
 		
 	}
 
