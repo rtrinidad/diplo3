@@ -2,6 +2,7 @@ package py.edu.ucsa.aso.web.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -48,6 +49,11 @@ public class TematicasServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		List<integer> tematicas = request.getParameter("id");
+		
+	 
+		
 		
 
 	}

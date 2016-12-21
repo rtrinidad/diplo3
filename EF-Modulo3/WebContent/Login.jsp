@@ -26,7 +26,7 @@
                 <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Ingresar</button>
             </form><!-- /form -->
             <a href="#" class="forgot-password">
-                ï¿½Olvidaste tu clave?
+                ¿Olvidaste tu clave?
             </a>
         </div><!-- /card-container -->
     </div><!-- /container -->

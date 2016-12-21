@@ -27,6 +27,7 @@
 	<table class="table table-striped custab">
 	<thead>
 	<tr>
+		<th>Id</th>
 		<th>Nombre</th>
 		<th>Descripcion</th>
 		<th>Organizacion</th>
@@ -39,6 +40,7 @@
 	<tbody>
 	<c:forEach items="${expoSocios}" var="x">
 	<tr>
+		<td>${x.exposicion.id}</td>
 		<td>${x.exposicion.nombre}</td>
         <td>${x.exposicion.descripcion}</td>
         <td>${x.exposicion.organiza}</td>
@@ -46,7 +48,7 @@
         <td>${x.exposicion.fechaExpo}</td>
         <td>${x.exposicion.contacto}</td>
         <td class="text-center">
-        <a class='btn btn-success btn-xs' data-toggle="modal" data-target="#myModal">
+        <a id="tematica" class='btn btn-success btn-xs' data-toggle="modal" data-target="#myModal" onclick="mostrar(${x.exposicion.id});" >
         		<span class="glyphicon glyphicon-tasks">
         		</span>Tematicas</a>
         </td>
@@ -67,21 +69,38 @@
           <h4 class="modal-title">Lista de Tematicas - Exposicion: xxxxx</h4>
         </div>
         <div class="modal-body">
-          <table class="table table-striped custab">
+          <form class="form-signin" action="Tematicas" method="GET">
+          <table id="mytable" class="table table-bordred table-striped">
 	<thead>
+	<button class="btn btn-primary pull-right" type="submit">
+	<span class="glyphicon glyphicon-plus-sign"></span> Cancelar Seleccionados
+	</button>
 	<tr>
 		<th>Id</th>
-		<th>Tematica General</th>
-		<th>Tematica Especifica</th>
+		<th>IdExpoPar</th>
+		<th>Tematica Gral</th>
+		<th>Tematica Especif</th>
 		<th>Cancelacion</th>
-		<th>Fecha Cancelacion</th>
-		<th>Fecha Exposicion</th>		
-		<th class="text-center">Acciones</th>
+		<th>Fecha Creacion</th>	
+		<th><input type="checkbox" id="checkall" />
+		</th>		
 	</tr>
 	</thead>
-	<tbody>
-	</tbody>
+	<tbody data-bind="foreach: teams">
+     <tr>
+     		
+            <td data-bind="text: id"></td>
+            <td data-bind="text: particExpoSocio.id"></td>
+            <td data-bind="text: tematicaGeneral.descripcion"></td>
+            <td data-bind="text: tematicaEspecifica"></td>
+            <td data-bind="text: canceloParticTematica"></td>
+            <td data-bind="text: fechaCreacion"></td>
+            <td><input type="checkbox" class="checkthis" name="id[]" value="1" /></td>
+            
+        </tr>
+  </tbody>
 	</table>
+	</form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -97,40 +116,64 @@
 	<br>
 	 <script type="text/javascript" src="js/jquery-1.11.1.js"></script>
 	<script type="text/javascript" src="js/bootstrap.js"></script>
+	<script type="text/javascript" src="js/knockout-min.js"></script>
 	
 	<script type="text/javascript">
-    $("#myModal").click(function(){
+	function mostrar(value){
+		var id = value;
+
+		console.log(id);
+		
+    	$.ajax({
+			type:'POST',
+			url:'Tematicas',
+			dataType: 'json',
+			data:'id_expo='+id,
+			success:function(data){
+				console.log(data);
+				ko.applyBindings({
+		            teams: data
+				
+		        });
+				
+// 				for(var i=0;i<data.length;i++){
+// 					//var objeto = JSON.parse(data[i])					
+// 					console.log(data[i].id);
+// 					console.log(data[i].canceloParticTematica);
+// 					console.log(data[i].fechaCreacion);
+// 					console.log(data[i].tematicaEspecifica);
+// 					console.log(data[i].tematicaGeneral.descripcion);
+					
+					
+// 				}
+			} //sucess
+        }); //ajax
 
 
-//var id=1;
-$.ajax({
-    data: {id_expo:1},
-    dataType: 'json',
-    url: 'Tematicas',
-    type: 'POST',
-    success: function(jsonObj){
-        // set value in input text of modal form
-       // (#address).val(jsonObj.address); 
-       alert(jsonObj); 
-    // open modal
-        $('#myModal').modal('show');  
-    },
-    error: function() {
-        alert('Ajax readyState: '+xhr.readyState+'\nstatus: '+xhr.status + ' ' + err);
-    }
-});
 
-// on hidden reset bootstrap modal
-
-// on close or hidden modal value will be reset
-//   $('#myModal').on('hide.bs.modal', function () {
-
-  //    $(this).find('form')[0].reset();
-   //})
-
- });
-
+} //mostrar
  </script>
  
+
+ <script type="text/javascript">
+ $(document).ready(function(){
+$("#mytable #checkall").click(function () {
+        if ($("#mytable #checkall").is(':checked')) {
+            $("#mytable input[type=checkbox]").each(function () {
+                $(this).prop("checked", true);
+            });
+
+        } else {
+            $("#mytable input[type=checkbox]").each(function () {
+                $(this).prop("checked", false);
+            });
+        }
+    });
+    
+    $("[data-toggle=tooltip]").tooltip();
+});
+
+ </script>
+
 </body>
 </html>
