@@ -34,13 +34,13 @@
 		<th>ubicacion</th>
 		<th>Fecha Exposicion</th>
 		<th>Contacto</th>
-		<th class="text-center">Tematicas</th>
+		<th class="text-center">Acciones</th>
 	</tr>
 	</thead>
 	<tbody>
 	<c:forEach items="${expoSocios}" var="x">
 	<tr>
-		<td>${x.exposicion.id}</td>
+		<td>${x.id}</td>
 		<td>${x.exposicion.nombre}</td>
         <td>${x.exposicion.descripcion}</td>
         <td>${x.exposicion.organiza}</td>
@@ -48,9 +48,12 @@
         <td>${x.exposicion.fechaExpo}</td>
         <td>${x.exposicion.contacto}</td>
         <td class="text-center">
-        <a id="tematica" class='btn btn-success btn-xs' data-toggle="modal" data-target="#myModal" onclick="mostrar(${x.exposicion.id});" >
+        <jsp:useBean id="now" class="java.util.Date"/>
+        <c:if test="${x.exposicion.fechaExpo > now}">
+        <a id="tematica" class='btn btn-success btn-xs' data-toggle="modal" data-target="#myModal" onclick="mostrar(${x.id});" >
         		<span class="glyphicon glyphicon-tasks">
-        		</span>Tematicas</a>
+        		</span>Cancelar Tematicas</a>
+       </c:if>
         </td>
 	</tr>
 	</c:forEach>
@@ -66,10 +69,10 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Lista de Tematicas - Exposicion: xxxxx</h4>
+          <h4 class="modal-title">Lista de Tematicas</h4>
         </div>
         <div class="modal-body">
-          <form class="form-signin" action="Tematicas" method="GET">
+          <form class="form-signin" action="CancelarTematica" method="POST">
           <table id="mytable" class="table table-bordred table-striped">
 	<thead>
 	<button class="btn btn-primary pull-right" type="submit">
@@ -77,11 +80,11 @@
 	</button>
 	<tr>
 		<th>Id</th>
-		<th>IdExpoPar</th>
+   <!-- <th>IdExpoPar</th> -->
 		<th>Tematica Gral</th>
-		<th>Tematica Especif</th>
+		<th>Tematica Especifica</th>
 		<th>Cancelacion</th>
-		<th>Fecha Creacion</th>	
+		<th>Fecha Cancelacion</th>	
 		<th><input type="checkbox" id="checkall" />
 		</th>		
 	</tr>
@@ -90,12 +93,13 @@
      <tr>
      		
             <td data-bind="text: id"></td>
-            <td data-bind="text: particExpoSocio.id"></td>
+    <!--    <td data-bind="text: particExpoSocio.id"></td> -->
             <td data-bind="text: tematicaGeneral.descripcion"></td>
             <td data-bind="text: tematicaEspecifica"></td>
+            
             <td data-bind="text: canceloParticTematica"></td>
-            <td data-bind="text: fechaCreacion"></td>
-            <td><input type="checkbox" class="checkthis" name="id[]" value="1" /></td>
+            <td data-bind="text: fechaCancelacion"></td>
+            <td><input data-bind="value: id" type="checkbox" class="checkthis" name="idTema" id="idTema" /></td>
             
         </tr>
   </tbody>
@@ -116,24 +120,24 @@
 	<br>
 	 <script type="text/javascript" src="js/jquery-1.11.1.js"></script>
 	<script type="text/javascript" src="js/bootstrap.js"></script>
-	<script type="text/javascript" src="js/knockout-min.js"></script>
+	<script type="text/javascript" src="js/knockout-3.4.1.js"></script>
 	
 	<script type="text/javascript">
 	function mostrar(value){
-		var id = value;
-
-		console.log(id);
 		
+		 id = value;
+				
     	$.ajax({
 			type:'POST',
 			url:'Tematicas',
 			dataType: 'json',
 			data:'id_expo='+id,
 			success:function(data){
-				console.log(data);
-				ko.applyBindings({
-		            teams: data
 				
+				ko.applyBindings({
+					
+		            teams: data
+		            
 		        });
 				
 // 				for(var i=0;i<data.length;i++){

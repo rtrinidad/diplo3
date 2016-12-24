@@ -11,7 +11,11 @@ import java.sql.Timestamp;
  */
 @Entity
 @Table(name="tematica_partic_expo_socios")
-@NamedQuery(name="TematicaParticExpoSocio.findAll", query="SELECT t FROM TematicaParticExpoSocio t")
+@NamedQueries({
+	@NamedQuery(name="TematicaParticExpoSocio.findAll", query="SELECT t FROM TematicaParticExpoSocio t"),
+    @NamedQuery(name="TematicaParticExpoSocio.findById",
+                query="SELECT t FROM TematicaParticExpoSocio t WHERE t.id = :idTema")
+})
 public class TematicaParticExpoSocio implements Serializable {
 	private static final long serialVersionUID = 1L;
 

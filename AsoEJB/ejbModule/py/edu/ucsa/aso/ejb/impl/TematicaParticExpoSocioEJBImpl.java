@@ -50,7 +50,6 @@ public class TematicaParticExpoSocioEJBImpl implements TematicaParticExpoSocioEJ
 	@Override
 	public List<TematicaParticExpoSocio> listarTematicaParticExpoSocioByParticExpoSocio(int idParticExpoSocio) {
 		
-		//List<TematicaParticExpoSocio> tematicas= em.createQuery("SELECT t.id,t.canceloParticTematica,t.fechaCancelacion,t.fechaCreacion,t.tematicaEspecifica,t.tematicaGeneral,t.particExpoSocio FROM TematicaParticExpoSocio t WHERE t.particExpoSocio.id = :idParticExpoSocio")
 		List<TematicaParticExpoSocio> tematicas= em.createQuery("SELECT t FROM TematicaParticExpoSocio t WHERE t.particExpoSocio.id = :idParticExpoSocio")
 		.setParameter("idParticExpoSocio", idParticExpoSocio)
 		   .getResultList();
@@ -64,11 +63,23 @@ public class TematicaParticExpoSocioEJBImpl implements TematicaParticExpoSocioEJ
 		for (TematicaParticExpoSocio tematicaParticExpoSocio : tematicasExpoSocio) {
 			
 			int id = tematicaParticExpoSocio.getId();
-			
-			Query query = em.createQuery("UPDATE TematicaParticExpoSocio t SET t.canceloParticTematica = TRUE and t.fechaCancelacion = currentTimeStamp() WHERE t.id = :id");
+			Query query = em.createQuery("UPDATE TematicaParticExpoSocio t SET t.canceloParticTematica = TRUE, t.fechaCancelacion = now() WHERE t.id = :id");
+			query.setParameter("id", id);
 			query.executeUpdate();
 		}
 		
+		
+		
+	}
+
+	@Override
+	public TematicaParticExpoSocio tematicaParticExpoSocioById(int idTema) {
+		
+		Query q = em.createNamedQuery("TematicaParticExpoSocio.findById");
+		q.setParameter("idTema", idTema);
+		return (TematicaParticExpoSocio) q.getSingleResult();
+		
+	
 	}
 	
 	

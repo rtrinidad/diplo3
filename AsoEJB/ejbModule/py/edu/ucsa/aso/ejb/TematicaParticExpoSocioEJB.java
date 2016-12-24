@@ -20,5 +20,6 @@ public interface TematicaParticExpoSocioEJB extends CrudEJB<TematicaParticExpoSo
 	
 	public void cancelarParticipacionTematica(List<TematicaParticExpoSocio> tematicasExpoSocio);
 	
+	public TematicaParticExpoSocio tematicaParticExpoSocioById(int idTema);
 	
 }
